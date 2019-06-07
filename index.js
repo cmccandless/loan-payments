@@ -1,9 +1,3 @@
-/*
- * Table format:
- * | Name | Principal ($.00)| Interest (%) | [ReadOnly] Payment | [Remove Button] |
- * |      | 0.00            | 0.00         | 0.00               | X |
- */
-
 function round(value, decimalPlaces = 2) {
     const factor = 10 ** decimalPlaces;
     return Math.round(value * factor) / factor;
@@ -241,7 +235,6 @@ $(document).ready(function () {
         var payoffBox = $("#payoff");
         payoffBox.html(`</br>Months to full payoff: ${termMonths}</br>`);
         payoffBox.append(`Total amount paid: $${totalPaid}`);
-        $("#payoff").html(`</br>$${totalPaid} paid in ${termMonths} months! See you next month!`);
         return false;
     });
 
