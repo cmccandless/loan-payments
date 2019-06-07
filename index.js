@@ -120,6 +120,7 @@ function saveFile(filename, text) {
 
 $(document).ready(function () {
     addRow();
+    addRow();
 
     $(document).on('click', 'input.removebutton', function() {
         $(this).closest('tr').remove();
