@@ -52,6 +52,7 @@ function addRow(name = '', principal = '', interest = '') {
     $('<input>').val(interest).attr("id","interest").attr("size",10).attr("placeholder","Interest (%)").appendTo(tr);
     $('<td>').attr("id","payment").attr("align","right").attr("width",60).appendTo(tr);
     loansTable.append(tr);
+    return false;
 }
 
 function getLoansFromTable() {
@@ -129,6 +130,7 @@ $(document).ready(function () {
         if (rows.length == 0) {
             addRow();
         }
+        return false;
     });
     
     $("#addrow").click(function () {
