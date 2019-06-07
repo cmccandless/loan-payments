@@ -6,6 +6,23 @@
         body
         {
             color: #fff;
+            background-color: rgb(25,148,132);
+            font-size: 14pt;
+        }
+
+        a
+        {
+            color: white;
+        }
+
+        a:visited
+        {
+            color: lightgray;
+        }
+
+        a:hover
+        {
+            color: #ff3;
         }
 
         table tr
@@ -21,13 +38,18 @@
 
         footer
         {
-            font-size: 14px;
+            font-size: 10pt;
             font-style: italic;
             position: fixed;
             left: 0;
             bottom: 0;
             width: 100%;
             text-align: center;
+        }
+
+        .payoff
+        {
+            font-size: 16pt;
         }
 
         .button:hover
@@ -68,12 +90,12 @@
         }
     </style>
     <head>
-        <title>Loan Payment Calculatr</title>
+        <title>Loan Payment Calculator</title>
         <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico"></lin>
     </head>
-    <body bgcolor="#0176ff">
+    <body>
         <center>
-            <h1>Multi-Loan Monthly Payment Calculator</h1>
+            <h1>Multi-Loan Prioritized Payment Calculator*</h1>
             <form id="mainform">
                 <input type="text" id="budget" width="100px" autofocus="autofocus" placeholder="Monthly Budget ($)">
                 <table id="loans"></table>
@@ -86,10 +108,11 @@
                 <button id="import-button" type="button">Import</button>
                 <button id="export-button" type="button">Export</button>
             </form>
-            <div id="payoff" padding=20></div>
+            <div class="payoff" id="payoff" padding="20"></div>
         </center>
     </body>
     <footer>
+        <div id="disclaimer">*The author of this website is a financial expert and is not liable for financial decisions based on data collected from this page.</div>
         <h3 font-size="16px">Source code hosted on <a href="https://www.github.com/cmccandless/loan-payments"><image src="https://www.github.com/favicon.ico" Alt="GitHub logo" width="16" height="16"></image> GitHub</a></h3> 
         <div>Attributions:</div>
         <div>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
