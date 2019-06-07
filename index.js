@@ -39,7 +39,7 @@ function recalcPriority(loans, termMonths, monthlyBudget) {
     return unallocated;
 }
 
-const sanitize = name => name.replace(/[\s-]/gi, '');
+const sanitize = name => name.replace(/[^\w]/gi, '');
 
 function addRow(name = '', principal = '', interest = '') {
     var loansTable = $('#loans');
@@ -53,10 +53,9 @@ function addRow(name = '', principal = '', interest = '') {
         .attr("height","16")
         .attr("tabindex","-1")
         .appendTo(tr);
-    $('<input>').val(name).attr("id","name").attr("placeholder","Loan Name").appendTo(tr);
-    $('<input>').val(principal).attr("id","principal").attr("placeholder","Principal ($)").appendTo(tr);
-    $('<input>').val(interest).attr("id","interest").attr("placeholder","Interest Rate (%)").appendTo(tr);
-    // $('<input>').prop("disabled",true).attr("id","payment").attr("placeholder","Monthly Payment ($)").appendTo(tr);
+    $('<input>').val(name).attr("id","name").attr("size",30).attr("placeholder","Loan Name").appendTo(tr);
+    $('<input>').val(principal).attr("id","principal").attr("size",10).attr("placeholder","Principal ($)").appendTo(tr);
+    $('<input>').val(interest).attr("id","interest").attr("size",10).attr("placeholder","Interest (%)").appendTo(tr);
     $('<td>').attr("id","payment").attr("align","right").attr("width",60).appendTo(tr);
     loansTable.append(tr);
     return false;
@@ -68,6 +67,7 @@ function getLoansFromTable() {
         $this = $(this);
         // $this.find('#payment').val("10.01");
         var name = $this.find("#name").val();
+        $this.attr("id",sanitize(name));
         if (name !== '') {
             var loan = {
                 "name":name,
@@ -171,12 +171,8 @@ $(document).ready(function () {
         let totalPaid = 0;
         $.each(loans, function(i, loan) {
             loan['payment'] = loan['payments'][0];
-            // alert(`${loan.name} ${loan.payment}`)
-            $(`#${sanitize(loan.name)} > #payment`).html(loan.payment);
-            // alert(paymentBox);
-            // paymentBox.prop('disabled', false);
-            // paymentBox.val(loan.payment);
-            // paymentBox.prop('disabled', true);
+            var id = sanitize(loan.name);
+            $(`#${id} #payment`).html(loan.payment);
             $.each(loan.payments, function(i, payment) {
                 totalPaid += payment;
             });
