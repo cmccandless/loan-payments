@@ -58,7 +58,6 @@ function addRow(name = '', principal = '', interest = '') {
     $('<input>').val(interest).attr("id","interest").attr("size",10).attr("placeholder","Interest (%)").appendTo(tr);
     $('<td>').attr("id","payment").attr("align","right").attr("width",60).appendTo(tr);
     loansTable.append(tr);
-    return false;
 }
 
 function getLoansFromTable() {
@@ -71,8 +70,12 @@ function getLoansFromTable() {
         if (name !== '') {
             var loan = {
                 "name":name,
-                "principal":$this.find("#principal").val(),
-                "interest":$this.find("#interest").val(),
+                "principal":parseFloat($this.find("#principal").val()),
+                "interest":parseFloat($this.find("#interest").val()),
+            }
+            var payment = $this.find('#payment').html();
+            if (payment !== '') {
+                loan['payment'] = parseFloat(payment);
             }
             loans.push(loan);
         }
@@ -82,6 +85,7 @@ function getLoansFromTable() {
 
 function populateLoansTable(loans) {
     var loansTable = $('#loans');
+    loansTable.empty();
     var props = ["name","principal","interest"];
     $.each(loans, function(i, loan) {
         var name = loan['name'];
@@ -90,7 +94,34 @@ function populateLoansTable(loans) {
             addRow(name, loan.principal, loan.interest);
         }
     });
-    return false;
+    addRow();
+}
+
+function download(data, filename, type) {
+    var file = new Blob([data], {type: type});
+    if (window.navigator.msSaveOrOpenBlob) { // IE10+
+        window.navigator.msSaveOrOpenBlob(file, filename);
+    } else {
+        var a = document.createElement('a');
+        var url = URL.createObjectURL(file);
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function() {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }, 0);
+    }
+}
+
+function saveFile(filename, text) {
+    var fs = require('fs');
+    fs.writeFile(filename, text, function(err) {
+        if (err) {
+            console.log(err);
+        }
+    });
 }
 
 $(document).ready(function () {
@@ -103,11 +134,39 @@ $(document).ready(function () {
         if (rows.length == 0) {
             addRow();
         }
-        return false;
     });
     
     $("#addrow").click(function () {
         return addRow();
+    });
+
+    $("#import-button").click(function () {
+        if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
+            alert('The File APIs are not fully supported in this browser.');
+            return;
+        }
+
+        var input = document.getElementById('import-file');
+        if (!input.files) {
+            alert("This browser doesn't seem to support the `files` property of file inputs.");
+        } else if (!input.files[0]) {
+            alert('Please select a loans file to import');
+        } else {
+            var file = input.files[0];
+            fr = new FileReader();
+            fr.onload = receivedText;
+            fr.readAsText(file);
+        }
+    });
+
+    function receivedText() {
+        var loans = JSON.parse(fr.result);
+        populateLoansTable(loans);
+    }
+
+    $('#export-button').click(function() {
+        var loans = getLoansFromTable();
+        download(JSON.stringify(loans, null, 2), 'loans.json', 'application/json');
     });
     
     $("#calculate").click(function() {
