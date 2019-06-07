@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+    <style>
+        body
+        {
+            color: #fff;
+        }
+
+        table tr
+        {
+            padding:5px;
+            border:5px solid 0x3f3f3f;
+        }
+
+        table
+        {
+            margin: auto;
+        }
+
+        footer
+        {
+            font-size: 14px;
+            font-style: italic;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .button:hover
+        {
+            background-color: #eaeaea;
+        }
+
+        .tooltip
+        {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext
+        {
+            visibility: hidden;
+            width: 80px;
+            color: black;
+            background-color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+
+            position: absolute;
+            z-index: 1;
+        }
+
+        .tooltip:hover .tooltiptext
+        {
+            visibility: visible;
+        }
+
+        textarea
+        {
+            background-color: #0176ff;
+            border: none;
+            resize: none;
+        }
+    </style>
+    <head>
+        <title>Loan Payment Calculatr</title>
+    </head>
+    <body bgcolor="#0176ff">
+        <center>
+            <h1>Multi-Loan Monthly Payment Calculator</h1>
+            <form id="mainform">
+                <input type="text" id="budget" width="100px" autofocus="autofocus" placeholder="Monthly Budget ($)">
+                <table id="loans"></table>
+                <div class="tooltip">
+                    <input id="addrow" type="image" src="plus.png" width="16" height="16"></br>
+                    <span class="tooltiptext">Add Row</span>
+                </div></br>
+                <!-- Import:<input id="import" type="file" name="importfile" /> -->
+                <!-- <input id="export" type="file"> -->
+                </br>
+                <button id="calculate">Calculate!</button>
+            </form>
+            <div id="payoff" padding=20></div>
+        </center>
+    </body>
+    <footer>
+        <h3 font-size="16px">Source code hosted on <a href="https://www.github.com/cmccandless/loan-payments"><image src="https://www.github.com/favicon.ico" Alt="GitHub logo" width="16" height="16"></image> GitHub</a></h3> 
+        <div>Attributions:</div>
+        <div>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+        <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+        <div>Icons made by <a href="https://www.flaticon.com/authors/minh-hoang" title="Minh Hoang">Minh Hoang</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+        </br>
+    </footer>
+</html>
