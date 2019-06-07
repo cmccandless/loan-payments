@@ -1,3 +1,5 @@
+language: shell
+
 deploy:
   provider: pages
   skip_cleanup: true
