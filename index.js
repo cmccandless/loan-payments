@@ -48,8 +48,8 @@ function addRow(name = '', principal = '', interest = '') {
         .attr("tabindex","-1")
         .appendTo(tr);
     $('<input>').val(name).attr("id","name").attr("size",30).attr("placeholder","Loan Name").appendTo(tr);
-    $('<input>').attr("class","currencytext").val(principal.toFixed(2)).attr("id","principal").attr("size",10).attr("placeholder","Principal ($)").appendTo(tr);
-    $('<input>').attr("class","interesttext").val(interest.toFixed(3)).attr("id","interest").attr("size",10).attr("placeholder","Interest (%)").appendTo(tr);
+    $('<input>').attr("class","currencytext").val(parseFloat(principal).toFixed(2)).attr("id","principal").attr("size",10).attr("placeholder","Principal ($)").appendTo(tr);
+    $('<input>').attr("class","interesttext").val(parseFloat(interest).toFixed(3)).attr("id","interest").attr("size",10).attr("placeholder","Interest (%)").appendTo(tr);
     $('<td>').attr("id","payment").attr("align","right").attr("width",60).appendTo(tr);
     loansTable.append(tr);
     return false;
