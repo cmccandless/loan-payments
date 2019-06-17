@@ -138,7 +138,7 @@ $(document).ready(function () {
     });
     
     $(document).on('change', 'input.interesttext', function() {
-        $(this).val$(this).val().toFixed(3));
+        $(this).val($(this).val().toFixed(3));
     });
     
     $("#addrow").click(function () {
