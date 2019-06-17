@@ -228,7 +228,7 @@ $(document).ready(function () {
         $.each(loans, function(i, loan) {
             loan['payment'] = loan['payments'][0];
             var id = sanitize(loan.name);
-            $(`#${id} #payment`).html(loan.payment);
+            $(`#${id} #payment`).html(loan.payment.toFixed(2));
             $.each(loan.payments, function(i, payment) {
                 totalPaid += payment;
             });
