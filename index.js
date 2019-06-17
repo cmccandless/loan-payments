@@ -140,11 +140,17 @@ $(document).ready(function () {
     });
     
     $(document).on('change', 'input.currencytext', function() {
-        $(this).val($(this).val().toFixed(2));
+        const value = $(this).val();
+        if (value !== '') {
+            $(this).val(parseFloat(value).toFixed(2));
+        }
     });
     
     $(document).on('change', 'input.interesttext', function() {
-        $(this).val($(this).val().toFixed(3));
+        const value = $(this).val();
+        if (value !== '') {
+            $(this).val(parseFloat(value).toFixed(3));
+        }
     });
     
     $("#addrow").click(function () {
