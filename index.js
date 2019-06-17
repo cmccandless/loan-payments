@@ -38,6 +38,12 @@ const sanitize = name => name.replace(/[^\w]/gi, '');
 function addRow(name = '', principal = '', interest = '') {
     var loansTable = $('#loans');
     var id = sanitize(name);
+    if (principal !== '') {
+        principal = parseFloat(principal).toFixed(2);
+    }
+    if (interest !== '') {
+        interest = parseFloat(interest).toFixed(3);
+    }
     var tr = $('<tr>').attr("id",id).attr("class","loan");
     $('<input>').attr("type","image")
         .attr("class","removebutton")
@@ -48,8 +54,8 @@ function addRow(name = '', principal = '', interest = '') {
         .attr("tabindex","-1")
         .appendTo(tr);
     $('<input>').val(name).attr("id","name").attr("size",30).attr("placeholder","Loan Name").appendTo(tr);
-    $('<input>').attr("class","currencytext").val(parseFloat(principal).toFixed(2)).attr("id","principal").attr("size",10).attr("placeholder","Principal ($)").appendTo(tr);
-    $('<input>').attr("class","interesttext").val(parseFloat(interest).toFixed(3)).attr("id","interest").attr("size",10).attr("placeholder","Interest (%)").appendTo(tr);
+    $('<input>').attr("class","currencytext").val(principal).attr("id","principal").attr("size",10).attr("placeholder","Principal ($)").appendTo(tr);
+    $('<input>').attr("class","interesttext").val(interest).attr("id","interest").attr("size",10).attr("placeholder","Interest (%)").appendTo(tr);
     $('<td>').attr("id","payment").attr("align","right").attr("width",60).appendTo(tr);
     loansTable.append(tr);
     return false;
