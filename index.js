@@ -48,8 +48,8 @@ function addRow(name = '', principal = '', interest = '') {
         .attr("tabindex","-1")
         .appendTo(tr);
     $('<input>').val(name).attr("id","name").attr("size",30).attr("placeholder","Loan Name").appendTo(tr);
-    $('<input>').val(principal).attr("id","principal").attr("size",10).attr("placeholder","Principal ($)").appendTo(tr);
-    $('<input>').val(interest).attr("id","interest").attr("size",10).attr("placeholder","Interest (%)").appendTo(tr);
+    $('<input>').attr("class","currencytext").val(principal.toFixed(2)).attr("id","principal").attr("size",10).attr("placeholder","Principal ($)").appendTo(tr);
+    $('<input>').attr("class","interesttext").val(interest.toFixed(3)).attr("id","interest").attr("size",10).attr("placeholder","Interest (%)").appendTo(tr);
     $('<td>').attr("id","payment").attr("align","right").attr("width",60).appendTo(tr);
     loansTable.append(tr);
     return false;
@@ -131,6 +131,14 @@ $(document).ready(function () {
             addRow();
         }
         return false;
+    });
+    
+    $(document).on('change', 'input.currencytext', function() {
+        $(this).val($(this).val().toFixed(2));
+    });
+    
+    $(document).on('change', 'input.interesttext', function() {
+        $(this).val$(this).val().toFixed(3));
     });
     
     $("#addrow").click(function () {
@@ -237,7 +245,7 @@ $(document).ready(function () {
 
         var payoffBox = $("#payoff");
         payoffBox.html(`</br>Months to full payoff: ${termMonths}</br>`);
-        payoffBox.append(`Total amount paid: $${totalPaid}`);
+        payoffBox.append(`Total amount paid: $${totalPaid.toFixed(2)}`);
         return false;
     });
 
