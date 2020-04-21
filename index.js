@@ -262,18 +262,14 @@ $(document).ready(function () {
     });
 
     $("#mainform").keypress(function(e) {
-        switch (e.keyCode)
-        {
-            // Enter key
-            case 13:
-                $('#calculate').click();
-                return false;
-            // n
-            case 78:
+        // Enter key
+        if (e.which && e.which == 13 && e.keyCode && e.keyCode == 13) {
+            if (e.shiftKey) {
                 addRow();
-                return false;
-            default:
-                return true;
+            } else {
+                $('#calculate').click();
+            }
+            return false;
         }
     });
 });
