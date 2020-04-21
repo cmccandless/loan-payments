@@ -8,6 +8,9 @@
             color: #fff;
             background-color: rgb(25,148,132);
             font-size: 14pt;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         a
@@ -34,6 +37,15 @@
         table
         {
             margin: auto;
+        }
+        
+        #footer
+        {
+            font-size: 10pt;
+            font-style: italic;
+            text-align: center;
+            flex: 0 0 50px;
+            margin-top: auto;
         }
 
         footer
@@ -109,8 +121,7 @@
                 <button id="export-button" type="button">Export</button>
             </form>
             <div class="payoff" id="payoff" padding="20"></div>
-            </br></br></br>
-            <div id="psuedofooter">
+            <div id="footer">
                 <div id="disclaimer">*The author of this website is a financial expert and is not liable for financial decisions based on data collected from this page.</div>
                 <h3 font-size="16px">Source code hosted on <a href="https://www.github.com/cmccandless/loan-payments"><image src="https://www.github.com/favicon.ico" Alt="GitHub logo" width="16" height="16"></image> GitHub</a></h3> 
                 <div>Attributions:</div>
