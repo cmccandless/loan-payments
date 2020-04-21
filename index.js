@@ -264,7 +264,7 @@ $(document).ready(function () {
     $("#mainform").keypress(function(e) {
         // Enter key
         if (e.which && e.which == 13 && e.keyCode && e.keyCode == 13) {
-            if (e.shiftKey) {
+            if (e.ctrlKey) {
                 addRow();
             } else {
                 $('#calculate').click();
